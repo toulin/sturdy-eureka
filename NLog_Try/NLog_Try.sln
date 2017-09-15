@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog_Try", "NLog_Try\NLog_Try.csproj", "{178FCC5A-C83F-4A52-A296-2F0E80FE75BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLog_WithoutConfig", "NLog_WithoutConfig\NLog_WithoutConfig.csproj", "{57A8CF1B-E5C5-43BB-9F08-8400F3E91852}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,10 @@ Global
 		{178FCC5A-C83F-4A52-A296-2F0E80FE75BD}.Debug|x86.Build.0 = Debug|x86
 		{178FCC5A-C83F-4A52-A296-2F0E80FE75BD}.Release|x86.ActiveCfg = Release|x86
 		{178FCC5A-C83F-4A52-A296-2F0E80FE75BD}.Release|x86.Build.0 = Release|x86
+		{57A8CF1B-E5C5-43BB-9F08-8400F3E91852}.Debug|x86.ActiveCfg = Debug|x86
+		{57A8CF1B-E5C5-43BB-9F08-8400F3E91852}.Debug|x86.Build.0 = Debug|x86
+		{57A8CF1B-E5C5-43BB-9F08-8400F3E91852}.Release|x86.ActiveCfg = Release|x86
+		{57A8CF1B-E5C5-43BB-9F08-8400F3E91852}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
