@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.titlePanel = new System.Windows.Forms.Panel();
-            this.bodyPanel = new System.Windows.Forms.Panel();
             this.bRun = new System.Windows.Forms.Button();
+            this.bodyPanel = new System.Windows.Forms.Panel();
             this.titlePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,16 +40,8 @@
             this.titlePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.titlePanel.Location = new System.Drawing.Point(0, 0);
             this.titlePanel.Name = "titlePanel";
-            this.titlePanel.Size = new System.Drawing.Size(424, 64);
+            this.titlePanel.Size = new System.Drawing.Size(786, 64);
             this.titlePanel.TabIndex = 0;
-            // 
-            // bodyPanel
-            // 
-            this.bodyPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bodyPanel.Location = new System.Drawing.Point(0, 64);
-            this.bodyPanel.Name = "bodyPanel";
-            this.bodyPanel.Size = new System.Drawing.Size(424, 254);
-            this.bodyPanel.TabIndex = 1;
             // 
             // bRun
             // 
@@ -61,11 +53,19 @@
             this.bRun.UseVisualStyleBackColor = true;
             this.bRun.Click += new System.EventHandler(this.bRun_Click);
             // 
+            // bodyPanel
+            // 
+            this.bodyPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bodyPanel.Location = new System.Drawing.Point(0, 64);
+            this.bodyPanel.Name = "bodyPanel";
+            this.bodyPanel.Size = new System.Drawing.Size(786, 367);
+            this.bodyPanel.TabIndex = 1;
+            // 
             // FLineSeries_Try
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(424, 318);
+            this.ClientSize = new System.Drawing.Size(786, 431);
             this.Controls.Add(this.bodyPanel);
             this.Controls.Add(this.titlePanel);
             this.Name = "FLineSeries_Try";
