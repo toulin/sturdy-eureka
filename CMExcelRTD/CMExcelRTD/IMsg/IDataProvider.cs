@@ -13,6 +13,12 @@ namespace CMExcelRTD
     {          
         void SubComm(string CommID);
         void DisSubComm(string CommID);
+        /// <summary>
+        /// 提供個股指定的屬性資料
+        /// </summary>
+        /// <param name="CommID"></param>
+        /// <param name="PropertyName"></param>
+        /// <returns></returns>
         object GetRTCommProperty(string CommID,string PropertyName);
         //資料有變化的個股
         List<string> ChangedComms();

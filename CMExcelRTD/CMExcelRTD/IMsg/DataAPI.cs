@@ -114,6 +114,7 @@ namespace CMExcelRTD
         bool err = false;
         void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
+            //TODO:待建立timer 
             if (err == true)
             {
                 timer.Stop();
