@@ -1,0 +1,19 @@
+一、將C#的元件加上強式名稱後，再建置成dll
+二、以dll產出tlb檔後，再將dll添加到GAC
+	
+	使用 Visual Studio x64 Win64 命令提示字元 (2010)，
+	在下列位置
+	C:\Windows\Microsoft.NET\Framework64\v4.0.30319\
+	輸入命令
+	tlbexp [com dll full path] /out:[output tlb fullPath]
+	gacutil /i [com dll full path]
+三、註冊元件 
+	C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm [com dll full path] /tlb: [output tlb fullPath] /codebase
+	*反註冊元件
+	C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm /unregister [com dll full path]
+
+
+
+
+
+ 

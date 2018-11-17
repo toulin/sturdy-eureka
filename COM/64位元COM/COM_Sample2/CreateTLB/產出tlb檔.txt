@@ -1,0 +1,7 @@
+使用 Visual Studio x64 Win64 命令提示字元 (2010)，
+在下列位置
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\
+輸入命令
+tlbexp [comDLL FullPath] /out:[tbl output fullPath]
+gacutil /i [comDLL FullPath]
+ 

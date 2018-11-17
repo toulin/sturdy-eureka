@@ -1,0 +1,11 @@
+使用 Visual Studio x64 Win64 命令提示字元 (2010)，
+在下列位置
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\
+輸入命令
+tlbexp [DLL完整路徑] /out:[tlb完整路徑]
+gacutil /i [DLL完整路徑]
+
+在客端使用regasm.exe註冊
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm [DLL完整路徑] /tlb: [tlb完整路徑] /codebase
+反註冊
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm /unregister [DLL完整路徑]
