@@ -24,6 +24,8 @@ namespace 正規表示式
             patternLst.Items.Add(@"[^0-9]");        //不含數字的任意字元
             patternLst.Items.Add(@"[^0-9]{3}");     //不含數字的3個連續字元
             patternLst.Items.Add(@"{cmoney.+?}");
+            //截取文章中的網址
+            patternLst.Items.Add(@"((http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?)");
             patternLst.SelectedIndex = 0;
         }
 
