@@ -3,6 +3,7 @@ using DevExpress.XtraTreeList.Nodes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
@@ -10,16 +11,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace MyTreeList
 {
     public partial class Form1 : Form
     {
         private MyList MyDataSource = new MyList();
+        private MyDataTable MyTableSource = new MyDataTable();
         public Form1()
         {
             InitializeComponent();
             LoadingData();
+            treeList1.OptionsBehavior.Editable = false;
+            treeList1.OptionsDragAndDrop.DragNodesMode = DevExpress.XtraTreeList.DragNodesMode.Single;
+            treeList1.OptionsDragAndDrop.DropNodesMode = DevExpress.XtraTreeList.DropNodesMode.Standard;
+            treeList1.DataSource = MyDataSource;
+            treeList1.ParentFieldName = "PID";
+            treeList1.KeyFieldName = "ID";
+
+            treeList2.OptionsBehavior.Editable = false;
+            treeList2.OptionsDragAndDrop.DragNodesMode = DevExpress.XtraTreeList.DragNodesMode.Single;
+            treeList2.OptionsDragAndDrop.DropNodesMode = DevExpress.XtraTreeList.DropNodesMode.Standard;
+            treeList2.DataSource = MyTableSource.Data;
+            treeList2.ParentFieldName = "PID";
+            treeList2.KeyFieldName = "ID";
         }
         private void LoadingData()
         {
@@ -30,12 +46,7 @@ namespace MyTreeList
             MyDataSource.Add(new MyClass1(5, 0, 4, "C5"));
             MyDataSource.Add(new MyClass1(1, 0, 5, "C6"));
 
-            treeList1.OptionsBehavior.Editable = false; 
-            treeList1.OptionsDragAndDrop.DragNodesMode = DevExpress.XtraTreeList.DragNodesMode.Single;
-            treeList1.OptionsDragAndDrop.DropNodesMode = DevExpress.XtraTreeList.DropNodesMode.Standard;
-            treeList1.DataSource = MyDataSource;
-            treeList1.ParentFieldName = "PID";
-            treeList1.KeyFieldName = "ID";
+            
             
         }
 
@@ -61,65 +72,59 @@ namespace MyTreeList
 
         private void treeList1_DragOver(object sender, DragEventArgs e)
         {
-            
-
-            //TreeListNode dragNode = e.Data.GetData(typeof(TreeListNode)) as TreeListNode;
-            //e.Effect = GetDragDropEffect(sender as TreeList, dragNode);
         }
 
-        private void treeList1_DragDrop(object sender, DragEventArgs e)
+        private void treeList_DragDrop(object sender, DragEventArgs e)
         {
-            //e.Effect = DragDropEffects.None;
-
-            //TreeListNode dragNode, targetNode;
-            //TreeList tl = sender as TreeList;
-            //Point p = tl.PointToClient(new Point(e.X, e.Y));
-
-            //dragNode = e.Data.GetData(typeof(TreeListNode)) as TreeListNode;
-
-            //targetNode = tl.CalcHitInfo(p).Node;
-
-            //int dragSort = (int)dragNode.GetValue("OrderNum");
-            //int targetSort = (int)targetNode.GetValue("OrderNum");
-            //dragNode.SetValue("OrderNum", targetSort);
-            //targetNode.SetValue("OrderNum", dragSort);
-
             TreeListNode dragNode, targetNode;
             TreeList tl = sender as TreeList;
             Point p = tl.PointToClient(new Point(e.X, e.Y));
 
             dragNode = e.Data.GetData(typeof(TreeListNode)) as TreeListNode;
             targetNode = tl.CalcHitInfo(p).Node;
-
-            
-
             tl.SetNodeIndex(dragNode, tl.GetNodeIndex(targetNode));
             e.Effect = DragDropEffects.None;  
-        }
-
-        private void treeList1_DragEnter(object sender, DragEventArgs e)
-        {
-            TreeListNode dragNode;
-            dragNode = e.Data.GetData(typeof(TreeListNode)) as TreeListNode;
-            Debug.WriteLine($"{dragNode.GetValue("ID")}");
-        }
+        } 
 
         private void treeList1_BeforeDragNode(object sender, BeforeDragNodeEventArgs e)
         {
             SortTree.SortOrder = SortOrder.None;
         }
 
-        private void treeList1_AfterDragNode(object sender, AfterDragNodeEventArgs e)
+        private void treeList_AfterDragNode(object sender, AfterDragNodeEventArgs e)
         {
             TreeList tl = sender as TreeList;
+            //依目前索引重設所有資料的「排序」欄位值
             foreach(TreeListNode node in tl.Nodes)
             {
                 node.SetValue("OrderNum",tl.GetNodeIndex(node));
             }
-            
-            var newOrder = MyDataSource.OrderBy(o => o.OrderNum);
-            tl.DataSource = newOrder.ToList();
-            SortTree.SortOrder = SortOrder.Ascending;
+            //依「排序」欄位值，重排實際資料順序
+            if (tl.DataSource is DataTable)
+            {
+                DataTable data = tl.DataSource as DataTable;
+                var newSortList = data.AsEnumerable().OrderBy(o => o.Field<int>("OrderNum"));
+                data = newSortList.CopyToDataTable();
+                //DataTable tmp = data.Clone();
+                //foreach (DataRow row in newSortList)
+                //{
+                //    tmp.ImportRow(row);
+                //}
+                //MyTableSource.Data = tmp;
+                tl.DataSource = data;
+                SortTree2.SortOrder = SortOrder.Ascending;
+            }
+            else
+            {
+                var newOrder = MyDataSource.OrderBy(o => o.OrderNum);
+                tl.DataSource = newOrder.ToList();
+                SortTree.SortOrder = SortOrder.Ascending;
+            }
+        }
+
+        private void treeList2_BeforeDragNode(object sender, BeforeDragNodeEventArgs e)
+        {
+            SortTree2.SortOrder = SortOrder.None;
         }
     }
 }
