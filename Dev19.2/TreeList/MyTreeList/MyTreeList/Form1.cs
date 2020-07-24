@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraTreeList;
+﻿using DevExpress.ClipboardSource.SpreadsheetML;
+using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 using System;
 using System.Collections.Generic;
@@ -84,47 +85,29 @@ namespace MyTreeList
             targetNode = tl.CalcHitInfo(p).Node;
             tl.SetNodeIndex(dragNode, tl.GetNodeIndex(targetNode));
             e.Effect = DragDropEffects.None;  
-        } 
-
-        private void treeList1_BeforeDragNode(object sender, BeforeDragNodeEventArgs e)
-        {
-            SortTree.SortOrder = SortOrder.None;
         }
 
         private void treeList_AfterDragNode(object sender, AfterDragNodeEventArgs e)
         {
             TreeList tl = sender as TreeList;
+
             //依目前索引重設所有資料的「排序」欄位值
-            foreach(TreeListNode node in tl.Nodes)
+            foreach (TreeListNode node in tl.Nodes)
             {
-                node.SetValue("OrderNum",tl.GetNodeIndex(node));
+                node.SetValue("OrderNum", tl.GetNodeIndex(node));
             }
-            //依「排序」欄位值，重排實際資料順序
-            if (tl.DataSource is DataTable)
-            {
-                DataTable data = tl.DataSource as DataTable;
-                var newSortList = data.AsEnumerable().OrderBy(o => o.Field<int>("OrderNum"));
-                data = newSortList.CopyToDataTable();
-                //DataTable tmp = data.Clone();
-                //foreach (DataRow row in newSortList)
-                //{
-                //    tmp.ImportRow(row);
-                //}
-                //MyTableSource.Data = tmp;
-                tl.DataSource = data;
-                SortTree2.SortOrder = SortOrder.Ascending;
-            }
-            else
-            {
-                var newOrder = MyDataSource.OrderBy(o => o.OrderNum);
-                tl.DataSource = newOrder.ToList();
-                SortTree.SortOrder = SortOrder.Ascending;
-            }
+            tl.EndSort();
         }
+
+        private void treeList1_BeforeDragNode(object sender, BeforeDragNodeEventArgs e)
+        {
+            treeList1.BeginSort();
+        }
+
 
         private void treeList2_BeforeDragNode(object sender, BeforeDragNodeEventArgs e)
         {
-            SortTree2.SortOrder = SortOrder.None;
+            treeList2.BeginSort();
         }
     }
 }
