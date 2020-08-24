@@ -1,0 +1,16 @@
+安裝的事件流程
+封裝檔內的檔案、元件都會先被部署好在指定的安裝目錄
+OnBeforeInstall
+OnAffterInstall
+Install
+OnCommitting
+OnCommitted
+Commit
+
+移除安裝的事件流程
+OnBeforeUninstall
+OnAffterUninstall
+Uninstall
+最後才會將安裝目錄內的檔案移除
+
+ 
