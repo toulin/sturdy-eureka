@@ -22,13 +22,19 @@
         "Entry"
         {
         "MsmKey" = "8:_59A37DBCAFFD9DE04A579A65552029DE"
-        "OwnerKey" = "8:_79222B3C92EE4C82A6D94ACF4B6F77EB"
+        "OwnerKey" = "8:_458345EC4E024E3A82A72F1011F49A91"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_59A37DBCAFFD9DE04A579A65552029DE"
-        "OwnerKey" = "8:_458345EC4E024E3A82A72F1011F49A91"
+        "OwnerKey" = "8:_D5D06807F07547D28B65AFD0EEB0FEA5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_59A37DBCAFFD9DE04A579A65552029DE"
+        "OwnerKey" = "8:_79222B3C92EE4C82A6D94ACF4B6F77EB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -39,8 +45,20 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D5D06807F07547D28B65AFD0EEB0FEA5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_79222B3C92EE4C82A6D94ACF4B6F77EB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D5D06807F07547D28B65AFD0EEB0FEA5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -112,6 +130,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -130,6 +156,20 @@
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
             "Identifier" = "8:_F6CBF3D5_AD0B_45D1_8F4C_035183619964"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_6CC6E3534B6A466584CC2E6458A82CE7"
+            {
+            "Name" = "8:主要輸出 from CustomInstall2 (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_D5D06807F07547D28B65AFD0EEB0FEA5"
+            "FileType" = "3:1"
+            "InstallAction" = "3:1"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:2"
+            "Identifier" = "8:_A0BC6185_FB9E_497D_B2B1_1B0404C763B1"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
@@ -158,6 +198,48 @@
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
             "Identifier" = "8:_74AEBD3B_3A58_49AA_8957_E8F27EEABAA0"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_AB35DC05B2214D5195DB17B49EEE413C"
+            {
+            "Name" = "8:主要輸出 from CustomInstall2 (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_D5D06807F07547D28B65AFD0EEB0FEA5"
+            "FileType" = "3:1"
+            "InstallAction" = "3:2"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:2"
+            "Identifier" = "8:_2C9A0A86_F558_4790_B35C_39B7AF8B74BC"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_DFD603C1A6164335BDBDBFB13E4E4E5A"
+            {
+            "Name" = "8:主要輸出 from CustomInstall2 (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_D5D06807F07547D28B65AFD0EEB0FEA5"
+            "FileType" = "3:1"
+            "InstallAction" = "3:3"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:2"
+            "Identifier" = "8:_B5E251F7_BF3F_4E83_85D7_33F22B97175A"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_E85A4B658EAD4F4AB5A9D37D52474266"
+            {
+            "Name" = "8:主要輸出 from CustomInstall2 (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_D5D06807F07547D28B65AFD0EEB0FEA5"
+            "FileType" = "3:1"
+            "InstallAction" = "3:4"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:2"
+            "Identifier" = "8:_A32905F6_1A9C_4CDC_9446_31B4EB23DE15"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
@@ -285,15 +367,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:MySetup"
-        "ProductCode" = "8:{E336FC50-39E2-4827-8BB7-D7EDDCCF0576}"
-        "PackageCode" = "8:{0D279DB5-7F8E-40F6-ACBC-30EE6227FBA0}"
+        "ProductCode" = "8:{D6947F43-C6C2-4EED-B0D8-84B3BEE6379E}"
+        "PackageCode" = "8:{81F4C798-4D1B-4AD8-9C76-6539CE0EBE2A}"
         "UpgradeCode" = "8:{A3B78C60-8D2A-4BEC-88A3-5FD3F4BDD3A9}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.2"
+        "ProductVersion" = "8:1.0.9"
         "Manufacturer" = "8:Toulin"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -807,7 +889,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_458345EC4E024E3A82A72F1011F49A91"
             {
-            "SourcePath" = "8:..\\CustomInstaller\\obj\\Debug\\CustomInstaller.dll"
+            "SourcePath" = "8:..\\CustomInstaller\\obj\\Release\\CustomInstaller.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_9618B1431DA240E4A6095D27BF2FB4B4"
@@ -835,7 +917,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_79222B3C92EE4C82A6D94ACF4B6F77EB"
             {
-            "SourcePath" = "8:..\\TestInstaller\\obj\\Debug\\TestInstaller.exe"
+            "SourcePath" = "8:..\\TestInstaller\\obj\\Release\\TestInstaller.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_9618B1431DA240E4A6095D27BF2FB4B4"
@@ -856,6 +938,34 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{17C61910-60A7-4A5E-9870-718212781974}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D5D06807F07547D28B65AFD0EEB0FEA5"
+            {
+            "SourcePath" = "8:..\\CustomInstall2\\obj\\Release\\CustomInstall2.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_9618B1431DA240E4A6095D27BF2FB4B4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{86577F7D-E218-41AD-898E-104D43FAAD45}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
