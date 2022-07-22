@@ -15,7 +15,8 @@ namespace TestDictionary
     {
         Dictionary<int, MyClass> TestData = new Dictionary<int, MyClass>();
         Dictionary<ushort, MyClass> TestData2 = new Dictionary<ushort, MyClass>();
-
+        Dictionary<long, MyClass> TestData3 = new Dictionary<long, MyClass>();
+        private Timer DoSomethingTimer = new Timer();
         public Form1()
         {
             InitializeComponent();
@@ -23,7 +24,30 @@ namespace TestDictionary
             {
                 TestData.Add(i, new MyClass { Id = i, Name = "TEST" + i });
             }
-             
+            DoSomethingTimer.Interval = 500;
+            DoSomethingTimer.Tick += DoSomethingTimer_Tick;
+            DoSomethingTimer.Start();
+        }
+        private long Sn = 0;
+        private void DoSomethingTimer_Tick(object sender, EventArgs e)
+        {
+            HashSet<uint> vs = new HashSet<uint>();
+            vs.Add(1);
+            vs.Add(1);
+            for (long i = 0; i < 9999; i++)
+            {
+                Sn += 1;
+                TestData3.Add(Sn, new MyClass { Id = 1, Name = "TESTT", Value = 9999 });
+            }
+            //for (long i = 0; i < 9999; i++)
+            //{
+            //    TestData3.Add(i, new MyClass { Id = 1, Name = "TESTT", Value = 9999 });
+            //}
+            //for (long i = 0; i < 9999; i++)
+            //{
+            //    TestData3.Remove(i);
+            //}
+            Debug.WriteLine($"完成");
         }
 
         private void button1_Click(object sender, EventArgs e)
