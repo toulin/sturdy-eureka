@@ -7,13 +7,24 @@ using System.Threading.Tasks;
 
 namespace TestINotifyPropertyChanged
 {
+    
+
     public class DataManager<T> where T : IComparable<T>, IEquatable<T>, INotifyPropertyChanged
     {
+        private readonly ISynchronizeInvoke SynchronizeInvoke;
         private BindingList<T> AllData;
         public DataManager()
         {
             AllData = new BindingList<T>();
         }
+
+        public DataManager(ISynchronizeInvoke synchronizeInvoke)
+        {
+            AllData = new BindingList<T>();
+            SynchronizeInvoke = synchronizeInvoke;
+        }
+
+
         public BindingList<T> Data
         {
             get
@@ -59,6 +70,6 @@ namespace TestINotifyPropertyChanged
             {
                 throw new Exception($"AsignData - {ex.Message}");
             }
-        }
+        } 
     }
 }

@@ -13,19 +13,21 @@ namespace TestINotifyPropertyChanged
     public partial class Form1 : Form
     {
         //Timer MyTimer = new Timer();
-        MDataItems CustomDatas = new MDataItems();
+        MDataItems CustomDatas;
         private DateTime lastTime = DateTime.Now; 
         private Timer LogTimer = new Timer();
         private StringBuilder LogBuilder = new StringBuilder();
-        DataManager<MyData> DataManager = new DataManager<MyData>();
+        //DataManager<MyData> DataManager = new DataManager<MyData>();
 
         public Form1()
         {
             InitializeComponent();
-            gridControl1.DataSource = DataManager.Data; // DataManager.Data;
+            CustomDatas = new MDataItems(this);
+            gridControl1.DataSource = CustomDatas; // DataManager.Data;
             LogTimer.Tick += LogTimer_Tick;
             LogTimer.Interval = 1000;
             LogTimer.Start();
+            
         }
 
         private void LogTimer_Tick(object sender, EventArgs e)
@@ -56,7 +58,7 @@ namespace TestINotifyPropertyChanged
                         continue;
                     }
                     lastTime = DateTime.Now;
-                    Add2();
+                    Add();
 
                     
                 } while (Count < 100);
@@ -77,23 +79,7 @@ namespace TestINotifyPropertyChanged
             {
                 AddLog(ex.Message);
             }
-        }
-
-        private void Add2()
-        {
-            try
-            {
-                Count += 1;
-                MyData myData = new MyData { ID = Count, Name = DateTime.Now.ToString() };
-                var data = new CustomData(myData);
-                data.CustomeID = $"M{Count}";
-                DataManager.AsignData(myData);
-            }
-            catch (Exception ex)
-            {
-                AddLog(ex.Message);
-            }
-        }
+        } 
 
         
         List<MyData> MyDatas = new List<MyData>();
