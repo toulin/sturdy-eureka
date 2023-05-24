@@ -48,16 +48,40 @@ namespace EF6
             }
             Console.WriteLine("更新完畢");
             Console.ReadLine();
+            List<int> updateNos = new List<int>();
 
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             //批次更新
             using (var context = new MyDbContext())
             {
                 var whereAccount = context.Account.Where(o => o.AccountID > 10);
-                whereAccount.ToList().ForEach(o => o.Name = $"Test-{o.Age}");
+                whereAccount.ToList().ForEach(o =>
+                {
+                    o.Name = $"Test-{o.Age}";
+                    updateNos.Add(o.AccountID);
+                });
                 context.SaveChanges();
             }
+            Console.WriteLine($"批次更新完成 -{stopwatch.ElapsedMilliseconds} ms");
             Console.ReadLine();
-            Console.WriteLine("批次更新完成");
+
+            stopwatch.Restart();
+            //批次更新(byAttach)
+            using (var context = new MyDbContext())
+            {
+                updateNos.ForEach(o =>
+                {
+                    var account = new Account();
+                    account.AccountID = o;
+                    context.Account.Attach(account);
+                    account.Name = "ToulinTestUpdate(Attach)";
+                });
+                context.SaveChanges();
+            }
+
+            Console.WriteLine($"批次更新完成(byAttach)  -{stopwatch.ElapsedMilliseconds} ms");
+            Console.ReadLine();
         }
     }
 }
