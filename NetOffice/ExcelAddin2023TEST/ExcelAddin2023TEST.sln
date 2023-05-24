@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelAddin2023TEST", "ExcelAddin2023TEST\ExcelAddin2023TEST.csproj", "{15E296E0-4D9B-497D-815D-A4B425B7BE2B}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupTestNetOfficeAddin", "SetupTestNetOfficeAddin\SetupTestNetOfficeAddin.vdproj", "{BC4AAF24-B5FE-482B-B7A5-A955404E7001}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAddinInstall", "TestAddinInstall\TestAddinInstall.csproj", "{56C44EA0-E84B-4F06-AAC1-D5CA2F15BC89}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15E296E0-4D9B-497D-815D-A4B425B7BE2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15E296E0-4D9B-497D-815D-A4B425B7BE2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15E296E0-4D9B-497D-815D-A4B425B7BE2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15E296E0-4D9B-497D-815D-A4B425B7BE2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC4AAF24-B5FE-482B-B7A5-A955404E7001}.Debug|Any CPU.ActiveCfg = Debug
+		{BC4AAF24-B5FE-482B-B7A5-A955404E7001}.Release|Any CPU.ActiveCfg = Release
+		{56C44EA0-E84B-4F06-AAC1-D5CA2F15BC89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56C44EA0-E84B-4F06-AAC1-D5CA2F15BC89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56C44EA0-E84B-4F06-AAC1-D5CA2F15BC89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56C44EA0-E84B-4F06-AAC1-D5CA2F15BC89}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E2ACBF6C-7D4E-4EA2-BA85-7BECC241E224}
+	EndGlobalSection
+EndGlobal

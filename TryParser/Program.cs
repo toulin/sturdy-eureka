@@ -33,7 +33,7 @@ namespace TryParser
             {
                 parserI = Parse<int>(s);
             }
-            Console.WriteLine($"int.Parse spend {stopwatch.ElapsedMilliseconds}");
+            Console.WriteLine($"use Converter spend {stopwatch.ElapsedMilliseconds}");
             Console.ReadLine();
         }
 
@@ -71,7 +71,7 @@ namespace TryParser
             values.Add("ID", "3");
             values.Add("CreateTime", "2022/9/9 11:33:11");
             values.Add("Name", "TEST Name");
-            values.Add("NullableValue", "");
+            values.Add("NullableValue", "7");
             values.Add("Value", "3.3");
             values.Add("Value2", "4.3");
 

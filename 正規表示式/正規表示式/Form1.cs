@@ -20,6 +20,7 @@ namespace 正規表示式
             patternLst.Items.Add(@"\[.+?\]");   //取[]括住的字串
             patternLst.Items.Add(@"[0-9]");     //任意單一數字
             patternLst.Items.Add(@"[0-9]+");    //任意數字
+            patternLst.Items.Add(@"+[0-9]");    //任意數字
             patternLst.Items.Add(@"[0-9]{3}");  //3組連續數字
             patternLst.Items.Add(@"[^0-9]");        //不含數字的任意字元
             patternLst.Items.Add(@"[^0-9]{3}");     //不含數字的3個連續字元

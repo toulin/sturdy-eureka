@@ -20,14 +20,6 @@ namespace TryParser
 
         public string Name { get; set; }
 
-
-        private T Parse<T>(object value)
-        {
-            if (value == null) return default(T);
-            var converter = TypeDescriptor.GetConverter(type: typeof(T));
-            return (T)converter.ConvertFrom(value); 
-        }
-
         /// <summary>
         /// 指定屬性名，寫入值
         /// </summary>
@@ -63,7 +55,7 @@ namespace TryParser
                     }
                     else
                     {
-                        SetStringValue(p, nullable.BaseType , value);
+                        SetStringValue(p, nullable.UnderlyingSystemType , value);
                     }
                 } 
                 else
