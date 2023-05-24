@@ -55,7 +55,7 @@ namespace EF6
             //批次更新
             using (var context = new MyDbContext())
             {
-                var whereAccount = context.Account.Where(o => o.AccountID > 10);
+                var whereAccount = context.Account.AsNoTracking().Where(o => o.AccountID > 10);
                 whereAccount.ToList().ForEach(o =>
                 {
                     o.Name = $"Test-{o.Age}";
