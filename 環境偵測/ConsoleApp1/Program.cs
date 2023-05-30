@@ -36,10 +36,38 @@ namespace ConsoleApp1
             }
             else
             {
-                Console.WriteLine("無法識別您目前運行的作業系統版本。");
+                OtherTry();
             }
             Console.ReadKey();
         }
+
+        private static void OtherTry()
+        {
+            // 獲取作業系統版本
+            string osVersion = GetWindowsVersion();
+            // 進行作業系統版本比較
+            if (osVersion.StartsWith("10"))
+            {
+                Console.WriteLine("您目前運行的是 Windows 10 或更新的作業系統版本。");
+            }
+            else if (osVersion.StartsWith("6.3"))
+            {
+                Console.WriteLine("您目前運行的是 Windows 8.1 或 Windows Server 2012 R2 作業系統版本。");
+            }
+            else if (osVersion.StartsWith("6.2"))
+            {
+                Console.WriteLine("您目前運行的是 Windows 8 或 Windows Server 2012 作業系統版本。");
+            }
+            else if (osVersion.StartsWith("6.1"))
+            {
+                Console.WriteLine("您目前運行的是 Windows 7 或 Windows Server 2008 R2 作業系統版本。");
+            }
+            else
+            {
+                Console.WriteLine("無法識別您目前運行的作業系統版本。");
+            }
+        }
+
         static string GetWindowsVersion()
         {
             using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion"))
