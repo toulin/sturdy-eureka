@@ -18,9 +18,7 @@ namespace WindowsFormsApp30
         {
             InitializeComponent();
 
-            // 建立一個新的執行緒來模擬非UI執行緒
-            Thread thread = new Thread(UpdateLabel);
-            thread.Start();
+            
         }
 
 
@@ -31,17 +29,28 @@ namespace WindowsFormsApp30
 
         private void UpdateLabel()
         {
-            //WaitSeconds(3);
-            label1.Invoke((MethodInvoker)delegate
-            { 
-                label1.Text = "已更新"; // 此處觸發錯誤
-                Debug.WriteLine("已更新");
-            });
+            WaitSeconds(1);
+
+            if (label1.IsHandleCreated)
+            {
+                label1.Invoke((MethodInvoker)delegate
+                {
+                    label1.Text = "已更新"; // 此處觸發錯誤
+                    Debug.WriteLine("已更新");
+                });
+            }
+            else
+            {
+                Debug.WriteLine($"此表單[{this.Name}{this.Text}]尚未完成載入");
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //WaitSeconds(3);
+            // 建立一個新的執行緒來模擬非UI執行緒
+            Thread thread = new Thread(UpdateLabel);
+            thread.Start();
+            WaitSeconds(5);
             Debug.WriteLine("Form1_Load end");
         }
 
