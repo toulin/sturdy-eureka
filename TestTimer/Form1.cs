@@ -12,9 +12,11 @@ namespace TestTimer
 {
     public partial class Form1 : Form
     {
+        private Timer[] timers = new Timer[15];
         public Form1()
         {
             InitializeComponent();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -23,13 +25,14 @@ namespace TestTimer
             DateTime startTime = DateTime.Now;
             DateTime lastTime = DateTime.Now;
             TimeSpan timeSpan;
-            //CreateTimerToDoSomething();
+            int count = 0;
             do
             {
                 if ((DateTime.Now - lastTime).TotalSeconds > 1)
                 {
                     //每秒執行一次CreateTimerToDoSomething
                     CreateTimerToDoSomething();
+                    count += 1;
                     lastTime = DateTime.Now;
                 }
                 //回圈持續執行2分鐘
@@ -44,6 +47,15 @@ namespace TestTimer
             count++;
             Console.WriteLine($"執行{count}次");
             Timer timer = new Timer();
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
+        private void CreateTimerToDoSomething(int i)
+        {
+            count++;
+            Console.WriteLine($"執行{count}次");
+            Timer timer = timers[i];
             timer.Tick += Timer_Tick;
             timer.Start();
         }
@@ -115,6 +127,16 @@ namespace TestTimer
         private async void button3_Click(object sender, EventArgs e)
         {
             await DoSomethingByTask_Fix();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //實例化16個timer ，觀察到的記憶體 增1kb
+            for (int i = 0; i < timers.Length; i++)
+            {
+                timers[i] = new Timer();
+                timers[i].Interval = 1000;
+            }
         }
     }
 }

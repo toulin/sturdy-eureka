@@ -82,7 +82,7 @@ namespace EF6
 
             Console.WriteLine($"批次更新完成(byAttach)  -{stopwatch.ElapsedMilliseconds} ms");
 
-            Console.WriteLine("Using Dapper InsetData");
+            Console.WriteLine("Using Dapper Update");
             Console.ReadLine();
             using (var context = new MyDbContext())
             {

@@ -11,6 +11,12 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+            GetWindowsVersion();
+            Console.ReadKey();
+        }
+
+        private static void GetWindowsVersion()
+        {
             // 獲取作業系統版本
             var osDescription = System.Runtime.InteropServices.RuntimeInformation.OSDescription;
 
@@ -36,15 +42,22 @@ namespace ConsoleApp1
             }
             else
             {
-                OtherTry();
+                OtherGetWindowsVersion();
             }
-            Console.ReadKey();
         }
 
-        private static void OtherTry()
+        private static void OtherGetWindowsVersion()
         {
             // 獲取作業系統版本
-            string osVersion = GetWindowsVersion();
+            string osVersion= string.Empty;
+            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion"))
+            {
+                if (key != null)
+                {
+                    osVersion=  key.GetValue("CurrentVersion").ToString();
+                }
+            }
+
             // 進行作業系統版本比較
             if (osVersion.StartsWith("10"))
             {
@@ -66,18 +79,6 @@ namespace ConsoleApp1
             {
                 Console.WriteLine("無法識別您目前運行的作業系統版本。");
             }
-        }
-
-        static string GetWindowsVersion()
-        {
-            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion"))
-            {
-                if (key != null)
-                {
-                    return key.GetValue("CurrentVersion").ToString();
-                }
-            }
-            return string.Empty;
-        }
+        } 
     }
 }

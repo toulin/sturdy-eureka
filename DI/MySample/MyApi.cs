@@ -7,21 +7,18 @@ using System.Threading.Tasks;
 namespace MySample
 {
     internal class MyApi : IApiProvider
-    {
-        private readonly IDataProvider _dataProvider;
-
-
-        private int thisID = 0;
+    { 
+        private readonly double CreateSeconds;
 
         public MyApi()
         {
-            Random random = new Random(DateTime.Now.Millisecond);
-            thisID = random.Next(1000);
+            Random random = new Random(DateTime.Now.Millisecond); 
+            CreateSeconds = Program.Watch.Elapsed.TotalSeconds;
         }
 
         public string GetAPI(string name)
         {
-            return $"Good! {name} got {thisID} dollar, HashCode={this.GetHashCode()}";
+            return $"Good! {name}   MyApi's HashCode={this.GetHashCode()}, {CreateSeconds}";
         }
     }
 }

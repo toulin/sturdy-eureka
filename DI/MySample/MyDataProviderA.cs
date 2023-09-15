@@ -9,17 +9,17 @@ namespace MySample
 {
     internal class MyDataProviderA:IDataProvider
     {
-        private int thisID = 0;
+        private double CreateSeconds = 0;
 
         public MyDataProviderA() 
         {
             Random random = new Random(DateTime.Now.Millisecond);
-            thisID = random.Next(999);
+            CreateSeconds = Program.Watch.Elapsed.TotalSeconds;
         }
 
         public string GetData(string name)
         {
-            return $"Hello {name}, My id is {thisID} , HashCode={this.GetHashCode()}";
+            return $"Hello {name},   MyDataProviderA's HashCode={this.GetHashCode()}, {CreateSeconds}";
         }
     }
 }

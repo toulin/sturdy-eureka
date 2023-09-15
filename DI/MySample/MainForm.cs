@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySample.Factory;
 
 namespace MySample
 {
@@ -16,11 +17,16 @@ namespace MySample
         
         private readonly IApiProvider ApiProvider;
 
-        public MainForm(IDataProvider provider,IApiProvider apiProvider)
+        private readonly IFormFactory FormFactory;
+
+        public MainForm(IFormFactory formFactory, IDataProvider provider,IApiProvider apiProvider)
         {
             Provider = provider;
             ApiProvider = apiProvider;
+            FormFactory = formFactory;
             InitializeComponent();
+
+            textBox1.Text += $"Create from {Program.Watch.Elapsed.TotalSeconds} {Environment.NewLine}";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -30,11 +36,16 @@ namespace MySample
             textBox1.Text += response + Environment.NewLine;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            var response = ApiProvider.GetAPI("Peter");
+            var form2 = FormFactory.Create<Form2>();
+            form2?.Show("T1");
+        }
 
-            textBox1.Text += response + Environment.NewLine;
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var form1 = FormFactory.Create<Form1>();
+            form1?.Show("Single");
         }
     }
 }

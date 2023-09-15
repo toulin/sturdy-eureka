@@ -18,7 +18,7 @@ namespace EF6
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connection = "Data Source=192.168.99.24;Initial Catalog=TESTDB;Persist Security Info=True;TrustServerCertificate=true;User ID=pcteamapplication;Password=pcteamapplication";
+            string connection = "Data Source=192.168.99.24;Initial Catalog=TESTDB;Persist Security Info=True;TrustServerCertificate=true;User ID=pcteamapplication;Password=pcteamapplication;Application Name=Test";
             optionsBuilder.UseSqlServer(connection); 
         }
 
