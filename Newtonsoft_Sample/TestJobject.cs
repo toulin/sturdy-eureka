@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Newtonsoft_Sample.MyAttribute;
 
 namespace Newtonsoft_Sample
 {
@@ -25,9 +24,8 @@ namespace Newtonsoft_Sample
                     var property = typeof(T).GetProperty(propertyName);
                     if (property != null)
                     {
-                        var customConvert= property.GetCustomAttribute<CustomConvertAttribute>();
                         var propertyType = property.PropertyType;;
-                        if (customConvert!=null)
+                        if (property.Name=="Detail")
                         {
                             // 使用自定義的反序列化邏輯
                             property.SetValue(obj, JsonConvert.DeserializeObject<ClassB>(row[i],new ClassBConverter()));
