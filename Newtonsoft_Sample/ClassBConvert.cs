@@ -15,6 +15,7 @@ namespace Newtonsoft_Sample
             var token = JToken.Load(reader);
             Console.WriteLine(token.ToString());
             return JsonConvert.DeserializeObject<ClassB>(token.ToString());
+            //return token.ToObject<ClassB>(); 此方法 會無法順利反序列化
         }
 
         public override void WriteJson(JsonWriter writer, ClassB value, JsonSerializer serializer)
