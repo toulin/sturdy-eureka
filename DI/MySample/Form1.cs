@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Extensions.Logging;
 
 namespace MySample
 { 
@@ -18,12 +19,14 @@ namespace MySample
     {
         private readonly IApiProvider ApiProvider;
         private readonly double CreateSeconds;
+        private readonly ILogger<Form1> Logger;
 
-        public Form1(IApiProvider provider)
+        public Form1(IApiProvider provider, ILogger<Form1> logger)
         {
             InitializeComponent();
             ApiProvider = provider;
             CreateSeconds = Program.Watch.Elapsed.TotalSeconds;
+            Logger= logger;
         }
 
         public void Show(string id)
@@ -32,6 +35,7 @@ namespace MySample
 
             textBox1.Text += $"{product}, from1'sHashCode={this.GetHashCode()} [{CreateSeconds}] {Environment.NewLine}";
             //Bind your controls etc
+            Logger.LogDebug($"{product}, from1'sHashCode={this.GetHashCode()} [{CreateSeconds}]");
             this.Show();
         }
     }

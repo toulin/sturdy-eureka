@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using MySample.Factory;
+using Serilog;
 
 namespace MySample
 {
@@ -20,9 +21,14 @@ namespace MySample
         static void Main()
         {
             Application.EnableVisualStyles();
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
             Watch.Start();
             Application.SetCompatibleTextRenderingDefault(false);
             var _serviceProvider = new ServiceCollection()
+                .AddLogging(configure => configure.AddSerilog())
                 .AddTransient<IFormFactory, FormFactory>()          
                 .AddSingleton<IDataProvider, MyDataProviderA>()     
                 .AddTransient<IApiProvider, MyApi>()                //在每次開啟新視窗時，這個IApiProvider才會每次注入新實例
