@@ -11,7 +11,6 @@ namespace MySample
 {
     internal static class Program
     {
-        internal static IServiceProvider ServiceProvider { get; private set; }
         internal static Stopwatch Watch { get; } = new Stopwatch();
 
         /// <summary>
@@ -32,7 +31,6 @@ namespace MySample
                 .AddTransient<Form2>()      //每次開啟都是新實例視窗
                 .AddSingleton<Form1>()      //每次開啟都是同一個實例視窗
                 .BuildServiceProvider();
-            ServiceProvider = _serviceProvider;
 
             // 使用自訂的Factory來創建視窗
             var mainFormFactory = _serviceProvider.GetRequiredService<MainForm>();
