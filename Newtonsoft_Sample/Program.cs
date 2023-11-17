@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,92 +12,63 @@ namespace Newtonsoft_Sample
     {
         static void Main(string[] args)
         {
+            Test();
             Test2();
         }
 
-        private static void Test3()
+        /// <summary>
+        /// 產生測試用的假資料 - 具有欄位名稱陣列和資料陣列
+        /// </summary>
+        /// <returns></returns>
+        private static (string[] columns, List<string[]> dataRows) CreateFakeJsonData()
         {
             ClassB class1 = new ClassB { CellName = "C5", SheetName = "工作表1" };
             string json1 = JsonConvert.SerializeObject(class1);
             ClassB class2 = new ClassB { CellName = "B3", SheetName = "工作表2" };
             string json2 = JsonConvert.SerializeObject(class2);
 
-            var result = TestJobject.GetListV3<SampleClassA>(
-                new string[]
+            string[] columns = new string[]
                 {
                     "Id", "Name", "Description", "Price", "Detail"
-                },
-                new List<string[]>()
+                };
+
+            List<string[]> dataRows = new List<string[]>()
                 {
                     new string[] { "1", "Name1", "Description1", "1.1", json1},
                     new string[] { "2", "Name2", "Description2", "2.2", json2 }
-                });
-
-
-
-            foreach (var item in result)
-            {
-                Console.WriteLine(item.Id + " " + item.Name + " " + item.Description + " " + item.Price);
-                Console.WriteLine($"cell={item.Detail.CellName}, sheetName={item.Detail.SheetName}");
-            }
-            Console.ReadKey();
-
+                };
+            return (columns, dataRows);
         }
 
         private static void Test2()
         {
-            ClassB class1 = new ClassB { CellName = "C5", SheetName = "工作表1" };
-            string json1 = JsonConvert.SerializeObject(class1);
-            ClassB class2 = new ClassB { CellName = "B3", SheetName = "工作表2" };
-            string json2 = JsonConvert.SerializeObject(class2);
+            var (columns, dataRows) = CreateFakeJsonData();
+            var result = TestJobject.GetList<SampleClassA>(columns, dataRows);
 
-            var result = TestJobject.GetList<SampleClassA>(
-                new string[] 
-                {
-                    "Id", "Name", "Description", "Price", "Detail"
-                },
-                new List<string[]>()
-                { 
-                    new string[] { "1", "Name1", "Description1", "1.1", json1}, 
-                    new string[] { "2", "Name2", "Description2", "2.2", json2 }
-                });
-
-
-
-            foreach (var item in result)
-            {
-                Console.WriteLine(item.Id + " " + item.Name + " " + item.Description + " " + item.Price);
-                Console.WriteLine($"cell={item.Detail.CellName}, sheetName={item.Detail.SheetName}");
-            }
-            Console.ReadKey();
+            PrintResult("test2", result);
 
         }
 
-        private void Test()
+        private static void Test()
         {
-            var result = TestJobject.GetList<SampleClassA>(
-                new string[] { "Id", "Name", "Description", "Price", "CellName", "Detail.SheetName" },
-                new List<string[]>() { new string[] { "1", "Name1", "Description1", "1.1", "A22", "工作表1" }, new string[] { "2", "Name2", "Description2", "2.2", "C6", "工作表2" } });
+            var (columns, dataRows) = CreateFakeJsonData();
 
+            var data3 = TestJobject.GetListV3<SampleClassA>(columns, dataRows);
+            PrintResult("test" ,data3);
+        }
 
-
-            foreach (var item in result)
-            {
+        private static void PrintResult(string title, List<SampleClassA> data)
+        {
+            Console.WriteLine(title);
+            foreach (var item in data)
+            {                
                 Console.WriteLine(item.Id + " " + item.Name + " " + item.Description + " " + item.Price);
                 Console.WriteLine($"cell={item.Detail.CellName}, sheetName={item.Detail.SheetName}");
+                            
             }
             Console.ReadKey();
-
-            var result2 = TestJobject.GetList2<SampleClassA>(
-                new string[] { "Id", "Name", "Description", "Price", "CellName", "Detail.SheetName" },
-                new List<string[]>() { new string[] { "1", "Name1", "Description1", "1.1", "A22", "工作表1" }, new string[] { "2", "Name2", "Description2", "2.2", "C6", "工作表2" } });
-
-            foreach (var item in result)
-            {
-                Console.WriteLine(item.Id + " " + item.Name + " " + item.Description + " " + item.Price);
-                Console.WriteLine($"cell={item.Detail.CellName}, sheetName={item.Detail.SheetName}");
-            }
-            Console.ReadKey();
+            const string line = "----------------------------------";
+            Console.WriteLine(line);
         }
     }
 }

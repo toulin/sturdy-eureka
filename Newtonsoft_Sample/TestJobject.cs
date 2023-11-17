@@ -40,6 +40,14 @@ namespace Newtonsoft_Sample
             }
             return result;
         }
+
+        /// <summary>
+        /// 將欄位陣列和資料陣列透過JObject轉換成指定泛型的List集合
+        /// </summary>
+        /// <typeparam name="T">對集合元素的泛型</typeparam>
+        /// <param name="columns">欄位名稱陣列</param>
+        /// <param name="data">資料陣列</param>
+        /// <returns></returns>
         public static List<T> GetList<T>(string[] columns, List<string[]> data)
         {
             List<T> list = new List<T>();
@@ -53,21 +61,6 @@ namespace Newtonsoft_Sample
                 list.Add(jObject.ToObject<T>());
             }
             return list;
-        }
-
-        public static List<T> GetList2<T>(string[] columns, List<string[]> data)
-        {
-            //columns to Dictionary
-            Dictionary<string, string> columnsDic = new Dictionary<string, string>();
-            foreach (var item in columns)
-            {
-                columnsDic.Add(item, item);
-            }
-            // 將欄位陣列和資料陣列轉換成JSON格式的字串
-            string json = JsonConvert.SerializeObject(columnsDic);
-            // 解析JSON字串成List<SampleClassA>
-            List<T> sampleList = JsonConvert.DeserializeObject<List<T>>(json);
-            return sampleList;
         }
     }
 }
