@@ -71,5 +71,16 @@ namespace TestThread
             await Test2();
             PrintThreadID("button2_Click 2");
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            CustomClass customClass = new CustomClass();
+            customClass.MyNotifyDelage = MyNotify; 
+        }
+
+        private void MyNotify(CustomClass sender, string param)
+        {
+            Debug.WriteLine($"Form MyNotify threadID={Thread.CurrentThread.ManagedThreadId} , param={param}");
+        }
     }
 }
