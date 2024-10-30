@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AsyncAwaitTest
 {
@@ -14,10 +15,22 @@ namespace AsyncAwaitTest
 
         public async Task<bool> T1()
         {
-            var form = new Form1();
+            //此處實例化表單或自訂控制項 會導致後續await無法回到UI執行緒
+            //為了避免這個問題，請在UI執行緒實例化表單或自訂控制項
+            //使用UI執行緒實例化表單或自訂控制項
+
+            //var form = new Form();
+            Program.form1.uiContext.Post(_ =>
+            {
+                var form = new Form();
+                // 這裡可以進行其他 UI 控制項的操作
+            }, null); 
+
 
             Debug.WriteLine($"T1 Start ThreadId={Thread.CurrentThread.ManagedThreadId}");
             var result = await T10();
+
+            //var form = new Form();
             Debug.WriteLine($"T1 Done ThreadId={Thread.CurrentThread.ManagedThreadId}");
             return result;
         }
