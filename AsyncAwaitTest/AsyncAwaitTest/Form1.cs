@@ -31,5 +31,10 @@ namespace AsyncAwaitTest
                 await test1.T1();
             });
         }
+
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            await test1.T1();
+        }
     }
 }
