@@ -14,8 +14,10 @@ namespace AsyncAwaitTest
 
         public async Task<bool> T1()
         {
+            var form = new Form1();
+
             Debug.WriteLine($"T1 Start ThreadId={Thread.CurrentThread.ManagedThreadId}");
-            var result = await T2();
+            var result = await T10();
             Debug.WriteLine($"T1 Done ThreadId={Thread.CurrentThread.ManagedThreadId}");
             return result;
         }
@@ -75,6 +77,7 @@ namespace AsyncAwaitTest
 
         private async Task<bool> T9()
         {
+            
             Debug.WriteLine($"T9 Start ThreadId={Thread.CurrentThread.ManagedThreadId}");
             var result = await T10();
             Debug.WriteLine($"T9 Done ThreadId={Thread.CurrentThread.ManagedThreadId}");
